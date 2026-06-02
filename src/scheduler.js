@@ -79,6 +79,53 @@ function writeJsonFile(filePath, data) {
 // 로그 기록
 // ============================================
 
+const X_QUEUE_FILE = path.join(__dirname, '..', 'queue', 'x_queue.json');
+
+/**
+ * Threads 글을 X 스타일로 변환하여 x_queue.json에 추가
+ */
+function addXQueueItem(threadsItem) {
+  const xQueue = readJsonFile(X_QUEUE_FILE);
+  
+  // 이미 동일한 원본 글로 등록된 이력이 있는지 검사
+  const exists = (xQueue.items || []).some(
+    (item) => item.created_from_threads === threadsItem.id
+  );
+  if (exists) return;
+
+  // 1. X 스타일 텍스트 변환: 줄바꿈 압축 (\n\n -> \n)
+  let xContent = (threadsItem.content || '').replace(/\n\n/g, '\n');
+
+  // 2. 카테고리별 해시태그 추가
+  const hashtagMap = {
+    estimate: '#견적 #프리랜서 #외주',
+    consulting: '#고객상담 #프리랜서 #비즈니스',
+    sales: '#영업 #마케팅 #수주',
+    workflow: '#업무효율 #생산성 #프리랜서',
+  };
+  const hashtags = hashtagMap[threadsItem.category] || '#프리랜서 #1인기업';
+  
+  // 해시태그와 본문 조립
+  xContent = `${xContent}\n\n${hashtags}`;
+
+  const newItem = {
+    id: threadsItem.id.replace('threads_', 'x_'),
+    category: threadsItem.category || '',
+    content: xContent,
+    status: 'ready',
+    created_from_threads: threadsItem.id,
+    created_at: new Date().toISOString(),
+  };
+
+  if (!xQueue.items) {
+    xQueue.items = [];
+  }
+  
+  xQueue.items.push(newItem);
+  writeJsonFile(X_QUEUE_FILE, xQueue);
+  console.log(`   🐦 X 대기 큐 자동 등록 완료! (ID: ${newItem.id})`);
+}
+
 /**
  * 발행 성공 로그 기록
  */
@@ -91,6 +138,13 @@ function logPosted(queueItem, result) {
     posted_at: new Date().toISOString(),
   });
   writeJsonFile(POSTED_LOG_FILE, logData);
+
+  // X 대기 큐 자동 등록 트리거
+  try {
+    addXQueueItem(queueItem);
+  } catch (error) {
+    console.error(`   ⚠️ X 대기 큐 등록 실패: ${error.message}`);
+  }
 }
 
 /**
