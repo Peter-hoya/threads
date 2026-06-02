@@ -144,17 +144,32 @@ function getDueItems() {
     return [];
   }
 
-  return queue.items.filter((item) => {
-    // status가 'ready'인 것만 대상
-    if (item.status !== 'ready') return false;
+  // 1. ready 상태인 것들만 1차 필터링
+  const readyItems = queue.items.filter((item) => item.status === 'ready');
+  if (readyItems.length === 0) {
+    return [];
+  }
 
-    // scheduled_at이 없으면 즉시 발행 대상
-    if (!item.scheduled_at) return true;
-
-    // scheduled_at 시간이 현재 시간 이전이면 발행 대상
+  // 2. 예약 시간(scheduled_at)이 명확히 현재 시간 이전으로 지정된 글들 추출
+  const explicitDueItems = readyItems.filter((item) => {
+    if (!item.scheduled_at) return false;
     const scheduledTime = new Date(item.scheduled_at);
     return scheduledTime <= now;
   });
+
+  // 명시적 예약 대상이 있다면 그것들을 반환
+  if (explicitDueItems.length > 0) {
+    return explicitDueItems;
+  }
+
+  // 3. 만약 명시적 예약 대상은 없으나, 예약 시간(scheduled_at)이 아예 없는 ready 상태 글이 존재한다면
+  // 리스트 순서상 가장 첫 번째 글 딱 1개만 즉시 발행 대상으로 지정
+  const unscheduledReadyItem = readyItems.find((item) => !item.scheduled_at);
+  if (unscheduledReadyItem) {
+    return [unscheduledReadyItem];
+  }
+
+  return [];
 }
 
 /**
