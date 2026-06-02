@@ -82,6 +82,33 @@ function writeJsonFile(filePath, data) {
 const X_QUEUE_FILE = path.join(__dirname, '..', 'queue', 'x_queue.json');
 
 /**
+ * X(트위터)의 글자 수 가중치를 계산하는 함수
+ * (한글/중국어/일어 등 CJK 문자는 2글자, 영문/숫자/기호/공백은 1글자 취급)
+ */
+function getXCharacterWeight(text) {
+  let weight = 0;
+  for (let i = 0; i < text.length; i++) {
+    const charCode = text.charCodeAt(i);
+    // CJK 유니코드 범위 체크 (한글, 한자, 일어 등)
+    if (
+      (charCode >= 0x1100 && charCode <= 0x11FF) || // 한글 자모
+      (charCode >= 0x3000 && charCode <= 0x303F) || // CJK 기호 및 문장 부호
+      (charCode >= 0x3040 && charCode <= 0x309F) || // 히라가나
+      (charCode >= 0x30A0 && charCode <= 0x30FF) || // 가타카나
+      (charCode >= 0x3130 && charCode <= 0x318F) || // 한글 호환 자모
+      (charCode >= 0x4E00 && charCode <= 0x9FFF) || // CJK 통합 한자
+      (charCode >= 0xAC00 && charCode <= 0xD7A3) || // 한글 음절
+      (charCode >= 0xFF00 && charCode <= 0xFFEF)    // 전각 문자
+    ) {
+      weight += 2;
+    } else {
+      weight += 1;
+    }
+  }
+  return weight;
+}
+
+/**
  * Threads 글을 X 스타일로 변환하여 x_queue.json에 추가
  */
 function addXQueueItem(threadsItem) {
@@ -94,7 +121,7 @@ function addXQueueItem(threadsItem) {
   if (exists) return;
 
   // 1. X 스타일 텍스트 변환: 줄바꿈 압축 (\n\n -> \n)
-  let xContent = (threadsItem.content || '').replace(/\n\n/g, '\n');
+  let xContentBody = (threadsItem.content || '').replace(/\n\n/g, '\n');
 
   // 2. 카테고리별 해시태그 추가
   const hashtagMap = {
@@ -105,13 +132,38 @@ function addXQueueItem(threadsItem) {
   };
   const hashtags = hashtagMap[threadsItem.category] || '#프리랜서 #1인기업';
   
-  // 해시태그와 본문 조립
-  xContent = `${xContent}\n\n${hashtags}`;
+  // X의 글자 수 제한: 280 가중치 자수
+  const maxWeight = 280;
+  const hashtagsWeight = getXCharacterWeight(`\n\n${hashtags}`);
+  const maxBodyWeight = maxWeight - hashtagsWeight - 6; // 안전마진 (' ...' 여유분 확보)
+
+  // 본문 가중치 계산
+  let currentBodyWeight = getXCharacterWeight(xContentBody);
+
+  // 본문이 허용치를 초과하는 경우 절삭 진행
+  if (currentBodyWeight > maxBodyWeight) {
+    let truncatedBody = '';
+    let accumulatedWeight = 0;
+
+    for (let i = 0; i < xContentBody.length; i++) {
+      const char = xContentBody[i];
+      const charWeight = getXCharacterWeight(char);
+      if (accumulatedWeight + charWeight > maxBodyWeight) {
+        break;
+      }
+      truncatedBody += char;
+      accumulatedWeight += charWeight;
+    }
+    xContentBody = `${truncatedBody.trim()} ...`;
+  }
+
+  // 최종 조합
+  const finalContent = `${xContentBody}\n\n${hashtags}`;
 
   const newItem = {
     id: threadsItem.id.replace('threads_', 'x_'),
     category: threadsItem.category || '',
-    content: xContent,
+    content: finalContent,
     status: 'ready',
     created_from_threads: threadsItem.id,
     created_at: new Date().toISOString(),
@@ -123,7 +175,7 @@ function addXQueueItem(threadsItem) {
   
   xQueue.items.push(newItem);
   writeJsonFile(X_QUEUE_FILE, xQueue);
-  console.log(`   🐦 X 대기 큐 자동 등록 완료! (ID: ${newItem.id})`);
+  console.log(`   🐦 X 대기 큐 자동 등록 완료! (ID: ${newItem.id}, 글자수: ${getXCharacterWeight(finalContent)}자)`);
 }
 
 /**
