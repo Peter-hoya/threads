@@ -1,0 +1,23 @@
+{
+  "name": "threads-api-client",
+  "version": "1.0.0",
+  "description": "Meta 공식 Threads Graph API v1.0 기반 게시물/답글 작성 클라이언트",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "post": "node index.js post",
+    "reply": "node index.js reply",
+    "profile": "node index.js profile",
+    "list": "node index.js list",
+    "limit": "node index.js limit",
+    "help": "node index.js help",
+    "examples": "node index.js examples"
+  },
+  "keywords": ["threads", "meta", "api", "social-media"],
+  "author": "Peter-hoya",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
