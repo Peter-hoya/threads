@@ -1,0 +1,56 @@
+name: Threads Auto Poster
+
+on:
+  schedule:
+    # 한국 시간(KST) 오전 8시, 오후 1시, 오후 8시 매일 실행
+    # (UTC 기준 23시, 04시, 11시)
+    - cron: '0 4,11,23 * * *'
+  workflow_dispatch: # 수동 실행 버튼 추가
+
+permissions:
+  contents: write # 큐 파일 업데이트 후 레포지토리에 푸시하기 위함
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create .env file
+        run: |
+          echo "THREADS_ACCESS_TOKEN=${{ secrets.THREADS_ACCESS_TOKEN }}" >> .env
+          echo "THREADS_USER_ID=${{ secrets.THREADS_USER_ID }}" >> .env
+          echo "PUBLISH_WAIT_MS=30000" >> .env
+          echo "SCHEDULER_INTERVAL_MS=60000" >> .env
+
+      - name: Run scheduler once
+        run: node index.js scheduler --once
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "Peter-hoya"
+          git config --global user.email "peter.hoya57@gmail.com"
+          
+          # 변경되거나 추가된 큐/로그 파일 스테이징
+          git add queue/threads_queue.json logs/threads_posted_log.json logs/error_log.json
+          
+          # 변경사항이 있는 경우에만 커밋 및 푸시
+          if ! git diff --cached --exit-code; then
+            git commit -m "Auto-update: Threads queue & logs [skip ci]"
+            git push origin HEAD:master
+          else
+            echo "No changes to commit"
+          fi
