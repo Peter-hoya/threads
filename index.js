@@ -24,6 +24,13 @@ const {
   getReplies,
   getPublishingLimit,
 } = require('./src/threads-api');
+const {
+  startScheduler,
+  runOnce,
+  addToQueue,
+  listQueue,
+  removeFromQueue,
+} = require('./src/scheduler');
 
 // ============================================
 // CLI 인터페이스
@@ -58,6 +65,13 @@ function printUsage() {
    list [개수]                      최근 게시물 목록
    replies <게시물ID>               게시물의 답글 조회
    limit                           게시 사용량 확인
+
+   ── 예약 발행 ────────────────────────────
+   scheduler                       예약 발행 스케줄러 시작 (1분 간격)
+   scheduler --once                1회 체크 후 종료
+   queue                           현재 큐 목록 보기
+   queue-add <텍스트> [예약시간]     큐에 게시물 추가
+   queue-remove <아이템ID>          큐에서 게시물 삭제
 
    ── 기타 ─────────────────────────────────
    help                            이 도움말 표시
@@ -253,6 +267,47 @@ async function main() {
       // 사용량 확인
       case 'limit': {
         await getPublishingLimit();
+        break;
+      }
+
+      // 예약 발행 스케줄러
+      case 'scheduler': {
+        if (args[1] === '--once') {
+          await runOnce();
+        } else {
+          await startScheduler();
+        }
+        break;
+      }
+
+      // 큐 목록 보기
+      case 'queue': {
+        listQueue();
+        break;
+      }
+
+      // 큐에 추가
+      case 'queue-add': {
+        const content = args[1];
+        const scheduledAt = args[2] || null;
+        if (!content) {
+          console.error('❌ 게시할 텍스트를 입력하세요.');
+          console.log('   예: node index.js queue-add "안녕하세요!" "2026-06-03T09:00:00+09:00"');
+          return;
+        }
+        addToQueue(content, scheduledAt);
+        break;
+      }
+
+      // 큐에서 삭제
+      case 'queue-remove': {
+        const itemId = args[1];
+        if (!itemId) {
+          console.error('❌ 삭제할 아이템 ID를 입력하세요.');
+          console.log('   예: node index.js queue-remove "threads_001"');
+          return;
+        }
+        removeFromQueue(itemId);
         break;
       }
 

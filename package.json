@@ -10,6 +10,10 @@
     "profile": "node index.js profile",
     "list": "node index.js list",
     "limit": "node index.js limit",
+    "scheduler": "node index.js scheduler",
+    "scheduler:once": "node index.js scheduler --once",
+    "queue": "node index.js queue",
+    "queue:add": "node index.js queue-add",
     "help": "node index.js help",
     "examples": "node index.js examples"
   },
