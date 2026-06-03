@@ -1,3 +1,11 @@
 {
-    "items": []
+  "items": [
+    {
+      "id": "threads_001",
+      "content_preview": "견적서 쓰는 건 괜찮아.\n\n힘든 건\n기준이 계속 바뀌는 거야.\n\n처음엔 간단하다더니\n끝에 ",
+      "error_message": "Threads API 오류 [100]: Unsupported post request. Object with ID '1397325845536863' does not exist, cannot be loaded due to missing permissions, or does not support this operation",
+      "failed_at": "2026-06-03T00:27:38.992Z",
+      "scheduled_at": null
+    }
+  ]
 }
