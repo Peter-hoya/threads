@@ -6,6 +6,13 @@
       "error_message": "Threads API 오류 [100]: Unsupported post request. Object with ID '1397325845536863' does not exist, cannot be loaded due to missing permissions, or does not support this operation",
       "failed_at": "2026-06-03T00:27:38.992Z",
       "scheduled_at": null
+    },
+    {
+      "id": "threads_002",
+      "content_preview": "상담은 짧은데\n정리는 오래 걸려.\n\n통화 끝나고 나면\n뭘 말했는지 흐려진다.\n\n고객은 기억",
+      "error_message": "Threads API 오류 [100]: Unsupported post request. Object with ID '1397325845536863' does not exist, cannot be loaded due to missing permissions, or does not support this operation",
+      "failed_at": "2026-06-03T08:55:48.614Z",
+      "scheduled_at": null
     }
   ]
 }
