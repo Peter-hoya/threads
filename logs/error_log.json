@@ -34,6 +34,13 @@
       "error_message": "Threads API 오류 [100]: Unsupported post request. Object with ID '1397325845536863' does not exist, cannot be loaded due to missing permissions, or does not support this operation",
       "failed_at": "2026-06-04T08:21:38.005Z",
       "scheduled_at": null
+    },
+    {
+      "id": "threads_006",
+      "content_preview": "고객이 원하는 걸\n처음부터 아는 경우는 드물어.\n\n말은 홈페이지인데\n속은 매출 고민이더라.",
+      "error_message": "Threads API 오류 [100]: Unsupported post request. Object with ID '1397325845536863' does not exist, cannot be loaded due to missing permissions, or does not support this operation",
+      "failed_at": "2026-06-04T13:58:19.380Z",
+      "scheduled_at": null
     }
   ]
 }
