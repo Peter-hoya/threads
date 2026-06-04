@@ -1,3 +1,12 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": "threads_001",
+      "category": "estimate",
+      "content": "견적서 쓰는 건 괜찮아.\n\n힘든 건\n기준이 계속 바뀌는 거야.\n\n처음엔 간단하다더니\n끝에 가면 일이 커지더라.\n\n처음 상담 때\n범위를 잡는 게 답인 것 같다.\n\n나만 견적 기준\n자주 흔들리는 건가?",
+      "status": "posted",
+      "threads_media_id": "18342211942221113",
+      "posted_at": "2026-06-04T14:27:34.571Z"
+    }
+  ]
 }
