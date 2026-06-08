@@ -7,6 +7,94 @@
       "status": "ready",
       "created_from_threads": "threads_001",
       "created_at": "2026-06-04T14:27:34.571Z"
+    },
+    {
+      "id": "x_002",
+      "category": "consulting",
+      "content": "상담은 짧은데\n정리는 오래 걸려.\n통화 끝나고 나면\n뭘 말했는지 흐려진다.\n고객은 기억한다고 믿지만\n나는 다시 메모를 뒤진다.\n상담 직후 정리가\n필요하다고 느꼈다.\n다들 상담 메모\n바로 남겨?\n\n#고객상담 #프리랜서 #비즈니스",
+      "status": "ready",
+      "created_from_threads": "threads_002",
+      "created_at": "2026-06-08T12:50:31.650Z"
+    },
+    {
+      "id": "x_003",
+      "category": "sales",
+      "content": "수주는 실력만으로\n되는 게 아니더라.\n잘 만들어도\n보여주는 방식이 약하면 묻힌다.\n처음엔 억울했는데\n이제는 인정하게 된다.\n작업물보다\n전달 방식이 중요할 때가 있다.\n다들 포트폴리오\n어떻게 보여줘?\n\n#영업 #마케팅 #수주",
+      "status": "ready",
+      "created_from_threads": "threads_003",
+      "created_at": "2026-06-08T12:50:31.651Z"
+    },
+    {
+      "id": "x_004",
+      "category": "workflow",
+      "content": "작업보다 관리가\n더 힘들 때가 있어.\n디자인은 하면 되는데\n무슨 일이 남았는지 헷갈린다.\n머릿속으로 버티면\n꼭 하나씩 빠진다.\n작업 단계가\n보여야 덜 불안한 것 같다.\n다들 작업 상태\n어디서 봐?\n\n#업무효율 #생산성 #프리랜서",
+      "status": "ready",
+      "created_from_threads": "threads_004",
+      "created_at": "2026-06-08T12:50:31.651Z"
+    },
+    {
+      "id": "x_005",
+      "category": "estimate",
+      "content": "견적 금액보다\n설명이 더 어렵더라.\n왜 이 가격인지\n매번 다시 풀어 말해야 해.\n싸게만 보면\n내 일의 기준도 같이 낮아진다.\n견적서에 이유를\n더 잘 담아야 할 것 같다.\n다들 가격 설명\n어떻게 하고 있어?\n\n#견적 #프리랜서 #외주",
+      "status": "ready",
+      "created_from_threads": "threads_005",
+      "created_at": "2026-06-08T12:50:31.651Z"
+    },
+    {
+      "id": "x_006",
+      "category": "consulting",
+      "content": "고객이 원하는 걸\n처음부터 아는 경우는 드물어.\n말은 홈페이지인데\n속은 매출 고민이더라.\n그래서 질문을 잘못하면\n방향도 같이 틀어진다.\n상담 질문이\n진짜 중요하다고 느꼈다.\n다들 첫 질문\n뭐부터 해?\n\n#고객상담 #프리랜서 #비즈니스",
+      "status": "ready",
+      "created_from_threads": "threads_006",
+      "created_at": "2026-06-08T12:50:31.652Z"
+    },
+    {
+      "id": "x_007",
+      "category": "sales",
+      "content": "숨고 견적 보내다 보면\n내가 입찰하는 느낌이 들어.\n가격은 계속 비교되고\n차이는 잘 안 보인다.\n결국 싼 사람만\n살아남는 판 같기도 하다.\n나만의 기준을\n보여줘야 할 것 같다.\n다들 숨고에서\n계약 잘 돼?\n\n#영업 #마케팅 #수주",
+      "status": "ready",
+      "created_from_threads": "threads_007",
+      "created_at": "2026-06-08T12:50:31.652Z"
+    },
+    {
+      "id": "x_008",
+      "category": "workflow",
+      "content": "혼자 일하면 자유로운데\n모든 게 내 책임이더라.\n기획, 디자인, 수정, 연락까지\n전부 내가 잡아야 한다.\n하나만 밀려도\n전체가 같이 밀린다.\n작업 흐름을\n쪼개야 할 것 같다.\n나만 혼자 일하면서\n계속 버거운가?\n\n#업무효율 #생산성 #프리랜서",
+      "status": "ready",
+      "created_from_threads": "threads_008",
+      "created_at": "2026-06-08T12:50:31.652Z"
+    },
+    {
+      "id": "x_009",
+      "category": "estimate",
+      "content": "견적 보낸 뒤가 더 애매해.\n읽었는지 아닌지\n답이 없으면 계속 신경 쓰인다.\n괜히 다시 연락하면\n부담 주는 느낌도 있고.\n후속 연락 기준이\n필요하다고 느꼈다.\n다들 며칠 뒤에\n다시 물어봐?\n\n#견적 #프리랜서 #외주",
+      "status": "ready",
+      "created_from_threads": "threads_009",
+      "created_at": "2026-06-08T12:50:31.652Z"
+    },
+    {
+      "id": "x_010",
+      "category": "consulting",
+      "content": "상담할 때는\n다 이해한 것 같아.\n근데 작업하려고 보면\n빈칸이 너무 많다.\n그때 다시 물어보면\n나도 고객도 피곤해진다.\n초기 상담 체크가\n더 촘촘해야 할 것 같다.\n나만 다시 물어보는 일\n많은 건가?\n\n#고객상담 #프리랜서 #비즈니스",
+      "status": "ready",
+      "created_from_threads": "threads_010",
+      "created_at": "2026-06-08T12:50:31.653Z"
+    },
+    {
+      "id": "x_011",
+      "category": "sales",
+      "content": "문의가 없어도 힘든데\n문의만 많아도 힘들어.\n진짜 고객인지\n그냥 가격만 보는 건지 모르겠다.\n시간 쓰고 나면\n허무할 때가 많다.\n문의 선별 기준이\n필요하다고 느꼈다.\n다들 헛문의\n어떻게 걸러?\n\n#영업 #마케팅 #수주",
+      "status": "ready",
+      "created_from_threads": "threads_011",
+      "created_at": "2026-06-08T12:50:31.653Z"
+    },
+    {
+      "id": "x_012",
+      "category": "workflow",
+      "content": "수정 요청은 작은데\n맥락 찾는 데 시간이 든다.\n어느 페이지였는지\n무슨 말이었는지 다시 본다.\n작업보다 찾는 시간이\n더 아까울 때가 있다.\n수정 요청을\n형식화해야 할 것 같다.\n다들 수정 요청\n어떻게 받아?\n\n#업무효율 #생산성 #프리랜서",
+      "status": "ready",
+      "created_from_threads": "threads_012",
+      "created_at": "2026-06-08T12:50:31.653Z"
     }
   ]
 }
