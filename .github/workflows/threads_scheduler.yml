@@ -45,7 +45,7 @@ jobs:
           git config --global user.email "peter.hoya57@gmail.com"
           
           # 변경되거나 추가된 큐/로그 파일 스테이징
-          git add queue/threads_queue.json logs/threads_posted_log.json logs/error_log.json
+          git add queue/threads_queue.json queue/x_queue.json logs/threads_posted_log.json logs/x_posted_log.json logs/error_log.json
           
           # 변경사항이 있는 경우에만 커밋 및 푸시
           if ! git diff --cached --exit-code; then
