@@ -124,6 +124,14 @@
       "status": "ready",
       "created_from_threads": "threads_015",
       "created_at": "2026-06-09T07:50:55.864Z"
+    },
+    {
+      "id": "x_016",
+      "category": "workflow",
+      "content": "작업 중간에\n고객 연락이 쌓이면 흔들려.\n한 명 답하다 보면\n다른 작업 흐름이 끊긴다.\n집중 시간이\n생각보다 쉽게 깨진다.\n연락 시간도\n정해둘 필요가 있는 것 같다.\n다들 카톡 답장\n바로 해?\n\n#업무효율 #생산성 #프리랜서",
+      "status": "ready",
+      "created_from_threads": "threads_016",
+      "created_at": "2026-06-09T13:45:29.362Z"
     }
   ]
 }
