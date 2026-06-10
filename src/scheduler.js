@@ -36,7 +36,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { config, validateConfig } = require('./config');
+const { config, validateConfig, getAccountConfig } = require('./config');
 const { createTextPost, createImagePost, createVideoPost } = require('./threads-api');
 
 // 파일 경로 상수
@@ -162,6 +162,7 @@ function addXQueueItem(threadsItem) {
 
   const newItem = {
     id: threadsItem.id.replace('threads_', 'x_'),
+    account: threadsItem.account || null,
     category: threadsItem.category || '',
     content: finalContent,
     status: 'ready',
@@ -224,16 +225,16 @@ function logError(queueItem, error) {
  * @param {Object} item - 큐 아이템
  * @returns {Promise<Object>} 발행 결과
  */
-async function publishItem(item) {
+async function publishItem(item, accountConfig = null) {
   const options = item.options || {};
 
   // 미디어 타입에 따라 분기
   if (item.image_url) {
-    return await createImagePost(item.image_url, item.content || '', options);
+    return await createImagePost(item.image_url, item.content || '', options, accountConfig);
   } else if (item.video_url) {
-    return await createVideoPost(item.video_url, item.content || '', options);
+    return await createVideoPost(item.video_url, item.content || '', options, accountConfig);
   } else {
-    return await createTextPost(item.content, options);
+    return await createTextPost(item.content, options, accountConfig);
   }
 }
 
@@ -316,10 +317,19 @@ async function processQueue() {
         console.log(`   예약 시간: ${item.scheduled_at}`);
       }
 
+      // 계정 설정 가져오기 (item.account 필드를 확인하고 매핑)
+      let accountConfig = null;
+      if (item.account) {
+        console.log(`   대상 계정: ${item.account}`);
+        accountConfig = getAccountConfig(item.account);
+      } else {
+        console.log('   대상 계정: 기본 계정');
+      }
+
       // 발행 진행 중 표시
       updateQueueItemStatus(item.id, 'publishing');
 
-      const result = await publishItem(item);
+      const result = await publishItem(item, accountConfig);
 
       // 성공 처리
       updateQueueItemStatus(item.id, 'posted');
@@ -446,6 +456,7 @@ function addToQueue(content, scheduledAt, options = {}) {
 
   const newItem = {
     id,
+    account: options.account || null,
     category: options.category || '',
     content,
     scheduled_at: scheduledAt || null,
@@ -504,9 +515,10 @@ function listQueue() {
       ? new Date(item.scheduled_at).toLocaleString('ko-KR')
       : '즉시';
 
+    const accountInfo = item.account ? ` | 계정: ${item.account}` : '';
     console.log(`  ${emoji} [${index + 1}] ${item.id}`);
     console.log(`     내용: "${preview}..."`);
-    console.log(`     예약: ${time} | 상태: ${item.status}`);
+    console.log(`     예약: ${time} | 상태: ${item.status}${accountInfo}`);
     console.log('');
   });
 }

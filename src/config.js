@@ -14,6 +14,22 @@ const config = {
   accessToken: process.env.THREADS_ACCESS_TOKEN || '',
   userId: process.env.THREADS_USER_ID || '',
 
+  // 다중 계정 목록 파싱
+  multiAccounts: (() => {
+    try {
+      const rawAccounts = process.env.THREADS_MULTI_ACCOUNTS;
+      if (rawAccounts) {
+        const parsed = JSON.parse(rawAccounts.trim());
+        if (Array.isArray(parsed)) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn('⚠️  THREADS_MULTI_ACCOUNTS 환경 변수를 파싱하는 중 오류가 발생했습니다. 올바른 JSON 배열 형식인지 확인하세요:', e.message);
+    }
+    return [];
+  })(),
+
   // API 설정
   baseUrl: process.env.THREADS_API_BASE_URL || 'https://graph.threads.net/v1.0',
 
@@ -49,17 +65,45 @@ const config = {
 };
 
 /**
+ * 특정 계정 설정을 반환하는 헬퍼 함수 (하위 호환성 지원)
+ * @param {string} accountName - 조회할 계정명
+ * @returns {{ userId: string, accessToken: string }} 계정 설정 정보
+ */
+function getAccountConfig(accountName) {
+  if (!accountName) {
+    // 계정명이 없으면 기본 계정 설정을 반환
+    return {
+      userId: config.userId,
+      accessToken: config.accessToken,
+    };
+  }
+
+  const accounts = config.multiAccounts || [];
+  const account = accounts.find((a) => a.name === accountName);
+  if (!account) {
+    throw new Error(`계정 설정 "${accountName}"을 찾을 수 없습니다. THREADS_MULTI_ACCOUNTS 설정을 확인하세요.`);
+  }
+
+  return {
+    userId: account.userId,
+    accessToken: account.accessToken,
+  };
+}
+
+/**
  * 설정 유효성 검사
  */
 function validateConfig() {
   const warnings = [];
+  const hasMultiAccounts = config.multiAccounts && config.multiAccounts.length > 0;
 
-  if (!config.accessToken) {
-    warnings.push('⚠️  THREADS_ACCESS_TOKEN이 설정되지 않았습니다. .env 파일에 토큰을 입력하세요.');
-  }
-
-  if (!config.userId) {
-    warnings.push('⚠️  THREADS_USER_ID가 설정되지 않았습니다. .env 파일에 사용자 ID를 입력하세요.');
+  if (!hasMultiAccounts) {
+    if (!config.accessToken) {
+      warnings.push('⚠️  THREADS_ACCESS_TOKEN이 설정되지 않았습니다. .env 파일에 토큰을 입력하세요.');
+    }
+    if (!config.userId) {
+      warnings.push('⚠️  THREADS_USER_ID가 설정되지 않았습니다. .env 파일에 사용자 ID를 입력하세요.');
+    }
   }
 
   if (warnings.length > 0) {
@@ -68,7 +112,8 @@ function validateConfig() {
     console.log('');
   }
 
-  return warnings.length === 0;
+  return warnings.length === 0 || hasMultiAccounts;
 }
 
-module.exports = { config, validateConfig };
+module.exports = { config, validateConfig, getAccountConfig };
+

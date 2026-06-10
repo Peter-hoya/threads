@@ -40,22 +40,25 @@ function sleep(ms) {
  * @param {string} endpoint - API 엔드포인트 경로
  * @param {string} method - HTTP 메서드 (GET, POST)
  * @param {Object} params - 요청 파라미터
+ * @param {Object} [accountConfig=null] - 다중 계정 설정
  * @returns {Promise<Object>} API 응답 데이터
  */
-async function apiRequest(endpoint, method = 'GET', params = {}) {
+async function apiRequest(endpoint, method = 'GET', params = {}, accountConfig = null) {
   const url = `${config.baseUrl}${endpoint}`;
 
-  if (!config.accessToken) {
+  const currentToken = accountConfig ? accountConfig.accessToken : config.accessToken;
+
+  if (!currentToken) {
     throw new Error(
       '❌ 액세스 토큰이 설정되지 않았습니다.\n' +
-      '   .env 파일에 THREADS_ACCESS_TOKEN을 입력하세요.\n' +
+      '   .env 파일에 THREADS_ACCESS_TOKEN 또는 THREADS_MULTI_ACCOUNTS를 입력하세요.\n' +
       '   발급 방법: https://developers.facebook.com/docs/threads/get-started'
     );
   }
 
   const requestParams = {
     ...params,
-    access_token: config.accessToken,
+    access_token: currentToken,
   };
 
   let response;
@@ -91,21 +94,15 @@ async function apiRequest(endpoint, method = 'GET', params = {}) {
  * 게시 전 컨테이너가 완전히 처리되었는지 확인할 때 사용
  *
  * @param {string} containerId - 미디어 컨테이너 ID
+ * @param {Object} [accountConfig=null] - 다중 계정 설정
  * @returns {Promise<Object>} 상태 정보 { id, status, error_message? }
- *
- * 상태 값:
- *  - EXPIRED: 컨테이너가 24시간 이상 게시되지 않아 만료됨
- *  - ERROR: 게시 불가 상태
- *  - FINISHED: 게시 가능 상태
- *  - IN_PROGRESS: 처리 중 (아직 게시 불가)
- *  - PUBLISHED: 이미 게시된 컨테이너
  */
-async function checkContainerStatus(containerId) {
+async function checkContainerStatus(containerId, accountConfig = null) {
   console.log(`📋 미디어 컨테이너 상태 확인 중... (ID: ${containerId})`);
 
   const data = await apiRequest(`/${containerId}`, 'GET', {
     fields: 'id,status,error_message',
-  });
+  }, accountConfig);
 
   console.log(`   상태: ${data.status}`);
   if (data.error_message) {
@@ -121,9 +118,10 @@ async function checkContainerStatus(containerId) {
  *
  * @param {string} creationId - 1단계에서 생성된 미디어 컨테이너 ID
  * @param {boolean} [skipWait=false] - 대기 시간 건너뛰기 여부
+ * @param {Object} [accountConfig=null] - 다중 계정 설정
  * @returns {Promise<Object>} 게시된 미디어 ID { id }
  */
-async function publishContainer(creationId, skipWait = false) {
+async function publishContainer(creationId, skipWait = false, accountConfig = null) {
   if (!skipWait) {
     const waitSeconds = config.publishWaitMs / 1000;
     console.log(`⏳ 서버 처리 대기 중... (${waitSeconds}초 - Meta 권장사항)`);
@@ -132,9 +130,11 @@ async function publishContainer(creationId, skipWait = false) {
 
   console.log(`📤 게시 중... (Container ID: ${creationId})`);
 
-  const data = await apiRequest(`/${config.userId}/threads_publish`, 'POST', {
+  const currentUserId = accountConfig ? accountConfig.userId : config.userId;
+
+  const data = await apiRequest(`/${currentUserId}/threads_publish`, 'POST', {
     creation_id: creationId,
-  });
+  }, accountConfig);
 
   console.log(`✅ 게시 완료! (Media ID: ${data.id})`);
   return data;
@@ -152,15 +152,10 @@ async function publishContainer(creationId, skipWait = false) {
  * @param {string} [options.replyControl] - 답글 제어 ('everyone' | 'accounts_you_follow' | 'mentioned_only')
  * @param {string} [options.topicTag] - 주제 태그 (1~50자, 마침표/앰퍼샌드 불가)
  * @param {string} [options.linkAttachment] - 링크 첨부 URL
+ * @param {Object} [accountConfig=null] - 다중 계정 설정
  * @returns {Promise<Object>} 게시된 미디어 ID { id }
- *
- * @example
- * const result = await createTextPost('안녕하세요! Threads API 테스트입니다.', {
- *   topicTag: '개발',
- *   replyControl: 'everyone',
- * });
  */
-async function createTextPost(text, options = {}) {
+async function createTextPost(text, options = {}, accountConfig = null) {
   console.log('\n📝 텍스트 게시물 작성 시작...');
   console.log(`   텍스트: "${text.substring(0, 50)}${text.length > 50 ? '...' : ''}"`);
 
@@ -185,13 +180,15 @@ async function createTextPost(text, options = {}) {
     params.link_attachment = options.linkAttachment;
   }
 
+  const currentUserId = accountConfig ? accountConfig.userId : config.userId;
+
   // 1단계: 미디어 컨테이너 생성
   console.log('   1️⃣  미디어 컨테이너 생성 중...');
-  const container = await apiRequest(`/${config.userId}/threads`, 'POST', params);
+  const container = await apiRequest(`/${currentUserId}/threads`, 'POST', params, accountConfig);
   console.log(`   ✅ 컨테이너 생성 완료 (ID: ${container.id})`);
 
   // 2단계: 게시
-  return await publishContainer(container.id);
+  return await publishContainer(container.id, false, accountConfig);
 }
 
 /**
@@ -202,15 +199,10 @@ async function createTextPost(text, options = {}) {
  * @param {Object} [options] - 추가 옵션
  * @param {string} [options.replyControl] - 답글 제어
  * @param {string} [options.topicTag] - 주제 태그
+ * @param {Object} [accountConfig=null] - 다중 계정 설정
  * @returns {Promise<Object>} 게시된 미디어 ID
- *
- * @example
- * const result = await createImagePost(
- *   'https://example.com/photo.jpg',
- *   '멋진 사진입니다!'
- * );
  */
-async function createImagePost(imageUrl, text = '', options = {}) {
+async function createImagePost(imageUrl, text = '', options = {}, accountConfig = null) {
   console.log('\n🖼️  이미지 게시물 작성 시작...');
 
   const params = {
@@ -222,13 +214,15 @@ async function createImagePost(imageUrl, text = '', options = {}) {
   if (options.replyControl) params.reply_control = options.replyControl;
   if (options.topicTag) params.topic_tag = options.topicTag;
 
+  const currentUserId = accountConfig ? accountConfig.userId : config.userId;
+
   // 1단계: 미디어 컨테이너 생성
   console.log('   1️⃣  미디어 컨테이너 생성 중...');
-  const container = await apiRequest(`/${config.userId}/threads`, 'POST', params);
+  const container = await apiRequest(`/${currentUserId}/threads`, 'POST', params, accountConfig);
   console.log(`   ✅ 컨테이너 생성 완료 (ID: ${container.id})`);
 
   // 2단계: 게시
-  return await publishContainer(container.id);
+  return await publishContainer(container.id, false, accountConfig);
 }
 
 /**
@@ -239,9 +233,10 @@ async function createImagePost(imageUrl, text = '', options = {}) {
  * @param {Object} [options] - 추가 옵션
  * @param {string} [options.replyControl] - 답글 제어
  * @param {string} [options.topicTag] - 주제 태그
+ * @param {Object} [accountConfig=null] - 다중 계정 설정
  * @returns {Promise<Object>} 게시된 미디어 ID
  */
-async function createVideoPost(videoUrl, text = '', options = {}) {
+async function createVideoPost(videoUrl, text = '', options = {}, accountConfig = null) {
   console.log('\n🎬 동영상 게시물 작성 시작...');
 
   const params = {
@@ -253,13 +248,15 @@ async function createVideoPost(videoUrl, text = '', options = {}) {
   if (options.replyControl) params.reply_control = options.replyControl;
   if (options.topicTag) params.topic_tag = options.topicTag;
 
+  const currentUserId = accountConfig ? accountConfig.userId : config.userId;
+
   // 1단계: 미디어 컨테이너 생성
   console.log('   1️⃣  미디어 컨테이너 생성 중...');
-  const container = await apiRequest(`/${config.userId}/threads`, 'POST', params);
+  const container = await apiRequest(`/${currentUserId}/threads`, 'POST', params, accountConfig);
   console.log(`   ✅ 컨테이너 생성 완료 (ID: ${container.id})`);
 
   // 2단계: 게시 (동영상은 처리 시간이 더 걸릴 수 있음)
-  return await publishContainer(container.id);
+  return await publishContainer(container.id, false, accountConfig);
 }
 
 /**
@@ -271,16 +268,10 @@ async function createVideoPost(videoUrl, text = '', options = {}) {
  * @param {string} mediaItems[].url - 미디어 URL
  * @param {string} [text] - 슬라이드와 함께 게시할 텍스트
  * @param {Object} [options] - 추가 옵션
+ * @param {Object} [accountConfig=null] - 다중 계정 설정
  * @returns {Promise<Object>} 게시된 미디어 ID
- *
- * @example
- * const result = await createCarouselPost([
- *   { type: 'IMAGE', url: 'https://example.com/1.jpg' },
- *   { type: 'IMAGE', url: 'https://example.com/2.jpg' },
- *   { type: 'VIDEO', url: 'https://example.com/video.mp4' },
- * ], '슬라이드 테스트');
  */
-async function createCarouselPost(mediaItems, text = '', options = {}) {
+async function createCarouselPost(mediaItems, text = '', options = {}, accountConfig = null) {
   console.log('\n🎠 슬라이드 게시물 작성 시작...');
 
   // 슬라이드 아이템 수 검증
@@ -290,6 +281,8 @@ async function createCarouselPost(mediaItems, text = '', options = {}) {
   if (mediaItems.length > config.limits.maxCarouselItems) {
     throw new Error(`슬라이드는 최대 ${config.limits.maxCarouselItems}개의 미디어까지 가능합니다.`);
   }
+
+  const currentUserId = accountConfig ? accountConfig.userId : config.userId;
 
   // 1단계: 각 미디어 아이템의 개별 컨테이너 생성
   console.log(`   1️⃣  미디어 컨테이너 ${mediaItems.length}개 생성 중...`);
@@ -308,7 +301,7 @@ async function createCarouselPost(mediaItems, text = '', options = {}) {
       params.video_url = item.url;
     }
 
-    const container = await apiRequest(`/${config.userId}/threads`, 'POST', params);
+    const container = await apiRequest(`/${currentUserId}/threads`, 'POST', params, accountConfig);
     containerIds.push(container.id);
     console.log(`      ✅ [${i + 1}/${mediaItems.length}] 컨테이너 생성 (ID: ${container.id})`);
   }
@@ -324,11 +317,11 @@ async function createCarouselPost(mediaItems, text = '', options = {}) {
   if (options.replyControl) carouselParams.reply_control = options.replyControl;
   if (options.topicTag) carouselParams.topic_tag = options.topicTag;
 
-  const carouselContainer = await apiRequest(`/${config.userId}/threads`, 'POST', carouselParams);
+  const carouselContainer = await apiRequest(`/${currentUserId}/threads`, 'POST', carouselParams, accountConfig);
   console.log(`   ✅ 슬라이드 컨테이너 생성 완료 (ID: ${carouselContainer.id})`);
 
   // 3단계: 게시
-  return await publishContainer(carouselContainer.id);
+  return await publishContainer(carouselContainer.id, false, accountConfig);
 }
 
 // ============================================
@@ -350,19 +343,10 @@ async function createCarouselPost(mediaItems, text = '', options = {}) {
  * @param {string} [options.mediaType] - 미디어 타입 (기본값: 'TEXT')
  * @param {string} [options.imageUrl] - 이미지 URL (mediaType이 IMAGE일 때)
  * @param {string} [options.videoUrl] - 동영상 URL (mediaType이 VIDEO일 때)
+ * @param {Object} [accountConfig=null] - 다중 계정 설정
  * @returns {Promise<Object>} 게시된 답글 미디어 ID { id }
- *
- * @example
- * // 텍스트 답글
- * const reply = await createReply('1234567890', '좋은 글이네요!');
- *
- * // 이미지 답글
- * const imageReply = await createReply('1234567890', '사진 공유합니다', {
- *   mediaType: 'IMAGE',
- *   imageUrl: 'https://example.com/reply-image.jpg',
- * });
  */
-async function createReply(replyToId, text, options = {}) {
+async function createReply(replyToId, text, options = {}, accountConfig = null) {
   console.log('\n💬 답글 작성 시작...');
   console.log(`   대상 게시물 ID: ${replyToId}`);
   console.log(`   텍스트: "${text.substring(0, 50)}${text.length > 50 ? '...' : ''}"`);
@@ -384,11 +368,11 @@ async function createReply(replyToId, text, options = {}) {
 
   // 1단계: 답글 컨테이너 생성
   console.log('   1️⃣  답글 컨테이너 생성 중...');
-  const container = await apiRequest('/me/threads', 'POST', params);
+  const container = await apiRequest('/me/threads', 'POST', params, accountConfig);
   console.log(`   ✅ 컨테이너 생성 완료 (ID: ${container.id})`);
 
   // 2단계: 게시
-  return await publishContainer(container.id);
+  return await publishContainer(container.id, false, accountConfig);
 }
 
 // ============================================
@@ -399,12 +383,15 @@ async function createReply(replyToId, text, options = {}) {
  * 게시 사용량 제한 조회
  * 24시간 내 게시/답글 사용량과 최대치를 확인합니다.
  *
+ * @param {Object} [accountConfig=null] - 다중 계정 설정
  * @returns {Promise<Object>} 사용량 정보
  */
-async function getPublishingLimit() {
+async function getPublishingLimit(accountConfig = null) {
   console.log('\n📊 게시 사용량 조회 중...');
 
-  const data = await apiRequest(`/${config.userId}/threads_publishing_limit`, 'GET', {
+  const currentUserId = accountConfig ? accountConfig.userId : config.userId;
+
+  const data = await apiRequest(`/${currentUserId}/threads_publishing_limit`, 'GET', {
     fields: 'quota_usage,config,reply_quota_usage,reply_config',
   });
 
@@ -426,13 +413,15 @@ async function getPublishingLimit() {
  * @param {string} [fields] - 조회할 필드 목록
  * @returns {Promise<Object>} 게시물 목록
  */
-async function getUserThreads(limit = 10, fields = 'id,text,timestamp,media_type,permalink') {
+async function getUserThreads(limit = 10, fields = 'id,text,timestamp,media_type,permalink', accountConfig = null) {
   console.log(`\n📄 최근 게시물 ${limit}개 조회 중...`);
 
-  const data = await apiRequest(`/${config.userId}/threads`, 'GET', {
+  const currentUserId = accountConfig ? accountConfig.userId : config.userId;
+
+  const data = await apiRequest(`/${currentUserId}/threads`, 'GET', {
     fields,
     limit,
-  });
+  }, accountConfig);
 
   if (data.data) {
     data.data.forEach((post, index) => {
@@ -449,12 +438,13 @@ async function getUserThreads(limit = 10, fields = 'id,text,timestamp,media_type
  *
  * @param {string} mediaId - 게시물 ID
  * @param {string} [fields] - 조회할 필드 목록
+ * @param {Object} [accountConfig=null] - 다중 계정 설정
  * @returns {Promise<Object>} 답글 목록
  */
-async function getReplies(mediaId, fields = 'id,text,timestamp,username') {
+async function getReplies(mediaId, fields = 'id,text,timestamp,username', accountConfig = null) {
   console.log(`\n💬 게시물 ${mediaId}의 답글 조회 중...`);
 
-  const data = await apiRequest(`/${mediaId}/replies`, 'GET', { fields });
+  const data = await apiRequest(`/${mediaId}/replies`, 'GET', { fields }, accountConfig);
 
   if (data.data) {
     console.log(`   총 ${data.data.length}개의 답글:`);
@@ -470,14 +460,15 @@ async function getReplies(mediaId, fields = 'id,text,timestamp,username') {
 /**
  * 사용자 프로필 정보 조회
  *
+ * @param {Object} [accountConfig=null] - 다중 계정 설정
  * @returns {Promise<Object>} 프로필 정보
  */
-async function getUserProfile() {
+async function getUserProfile(accountConfig = null) {
   console.log('\n👤 프로필 정보 조회 중...');
 
   const data = await apiRequest('/me', 'GET', {
     fields: 'id,username,threads_profile_picture_url,threads_biography',
-  });
+  }, accountConfig);
 
   console.log(`   사용자명: @${data.username || '?'}`);
   console.log(`   ID: ${data.id}`);

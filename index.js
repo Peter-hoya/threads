@@ -12,7 +12,7 @@
  *   node index.js reply ID "텍스트" → 빠른 답글 작성
  */
 
-const { config, validateConfig } = require('./src/config');
+const { config, validateConfig, getAccountConfig } = require('./src/config');
 const {
   createTextPost,
   createImagePost,
@@ -170,12 +170,38 @@ function printExamples() {
 // 명령어 실행
 // ============================================
 
+/**
+ * CLI 인자에서 --account 옵션을 찾아 추출하고 배열에서 제거합니다.
+ */
+function getAccountFromArgs(args) {
+  const accountIndex = args.indexOf('--account');
+  if (accountIndex !== -1 && args[accountIndex + 1]) {
+    const accountName = args[accountIndex + 1];
+    args.splice(accountIndex, 2);
+    return accountName;
+  }
+  return null;
+}
+
 async function main() {
   const args = process.argv.slice(2);
-  const command = args[0];
+  const accountName = getAccountFromArgs(args);
+  let accountConfig = null;
 
   // 설정 검사
   validateConfig();
+
+  if (accountName) {
+    try {
+      accountConfig = getAccountConfig(accountName);
+      console.log(`👤 다중 계정 설정 적용됨: [${accountName}]`);
+    } catch (e) {
+      console.error(`❌ 계정 로드 실패: ${e.message}`);
+      return;
+    }
+  }
+
+  const command = args[0];
 
   if (!command || command === 'help') {
     printUsage();
@@ -197,7 +223,7 @@ async function main() {
           console.log('   예: node index.js post "안녕하세요!"');
           return;
         }
-        await createTextPost(text);
+        await createTextPost(text, {}, accountConfig);
         break;
       }
 
@@ -210,7 +236,7 @@ async function main() {
           console.log('   예: node index.js post-image "https://example.com/img.jpg" "설명"');
           return;
         }
-        await createImagePost(imageUrl, text);
+        await createImagePost(imageUrl, text, {}, accountConfig);
         break;
       }
 
@@ -222,7 +248,7 @@ async function main() {
           console.error('❌ 동영상 URL을 입력하세요.');
           return;
         }
-        await createVideoPost(videoUrl, text);
+        await createVideoPost(videoUrl, text, {}, accountConfig);
         break;
       }
 
@@ -235,20 +261,20 @@ async function main() {
           console.log('   예: node index.js reply "1234567890" "좋은 글이네요!"');
           return;
         }
-        await createReply(replyToId, replyText);
+        await createReply(replyToId, replyText, {}, accountConfig);
         break;
       }
 
       // 프로필 조회
       case 'profile': {
-        await getUserProfile();
+        await getUserProfile(accountConfig);
         break;
       }
 
       // 게시물 목록 조회
       case 'list': {
         const count = parseInt(args[1], 10) || 10;
-        await getUserThreads(count);
+        await getUserThreads(count, undefined, accountConfig);
         break;
       }
 
@@ -260,13 +286,13 @@ async function main() {
           console.log('   예: node index.js replies "1234567890"');
           return;
         }
-        await getReplies(mediaId);
+        await getReplies(mediaId, undefined, accountConfig);
         break;
       }
 
       // 사용량 확인
       case 'limit': {
-        await getPublishingLimit();
+        await getPublishingLimit(accountConfig);
         break;
       }
 
@@ -295,7 +321,7 @@ async function main() {
           console.log('   예: node index.js queue-add "안녕하세요!" "2026-06-03T09:00:00+09:00"');
           return;
         }
-        addToQueue(content, scheduledAt);
+        addToQueue(content, scheduledAt, { account: accountName });
         break;
       }
 
