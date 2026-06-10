@@ -18,14 +18,49 @@ const config = {
   multiAccounts: (() => {
     try {
       const rawAccounts = process.env.THREADS_MULTI_ACCOUNTS;
-      if (rawAccounts) {
-        const parsed = JSON.parse(rawAccounts.trim());
-        if (Array.isArray(parsed)) {
-          return parsed;
+      if (!rawAccounts) return [];
+
+      let trimmed = rawAccounts.trim();
+      // 앞뒤에 따옴표가 있으면 제거
+      if ((trimmed.startsWith("'") && trimmed.endsWith("'")) || 
+          (trimmed.startsWith('"') && trimmed.endsWith('"'))) {
+        trimmed = trimmed.substring(1, trimmed.length - 1).trim();
+      }
+      
+      if (!trimmed) return [];
+
+      // 1. JSON 배열 형식 시도 (하위 호환성 유지)
+      if (trimmed.startsWith('[')) {
+        try {
+          const parsed = JSON.parse(trimmed);
+          if (Array.isArray(parsed)) {
+            return parsed;
+          }
+        } catch (jsonErr) {
+          // JSON 파싱 실패 시 일반 텍스트 포맷으로 계속 파싱 시도
         }
       }
+
+      // 2. userId:accessToken 포맷 파싱 (예: "123:token1,456:token2" 또는 줄바꿈/세미콜론 구분)
+      const accounts = [];
+      // 쉼표(,), 세미콜론(;), 줄바꿈(\n, \r) 등으로 각 계정 정보 분할
+      const parts = trimmed.split(/[\s,;]+/);
+      for (const part of parts) {
+        const cleanPart = part.trim();
+        if (!cleanPart) continue;
+        
+        const colonIndex = cleanPart.indexOf(':');
+        if (colonIndex !== -1) {
+          const userId = cleanPart.substring(0, colonIndex).trim().replace(/['"]/g, '');
+          const accessToken = cleanPart.substring(colonIndex + 1).trim().replace(/['"]/g, '');
+          if (userId && accessToken) {
+            accounts.push({ userId, accessToken });
+          }
+        }
+      }
+      return accounts;
     } catch (e) {
-      console.warn('⚠️  THREADS_MULTI_ACCOUNTS 환경 변수를 파싱하는 중 오류가 발생했습니다. 올바른 JSON 배열 형식인지 확인하세요:', e.message);
+      console.warn('⚠️  THREADS_MULTI_ACCOUNTS 환경 변수를 파싱하는 중 오류가 발생했습니다. 올바른 형식인지 확인하세요:', e.message);
     }
     return [];
   })(),
