@@ -41,7 +41,7 @@ const config = {
         }
       }
 
-      // 2. userId:accessToken 포맷 파싱 (예: "123:token1,456:token2" 또는 줄바꿈/세미콜론 구분)
+      // 2. userId:accessToken 포맷 또는 그냥 accessToken 포맷 파싱 (예: "123:token1,456:token2" 또는 "token1,token2")
       const accounts = [];
       // 쉼표(,), 세미콜론(;), 줄바꿈(\n, \r) 등으로 각 계정 정보 분할
       const parts = trimmed.split(/[\s,;]+/);
@@ -55,6 +55,12 @@ const config = {
           const accessToken = cleanPart.substring(colonIndex + 1).trim().replace(/['"]/g, '');
           if (userId && accessToken) {
             accounts.push({ userId, accessToken });
+          }
+        } else {
+          // 콜론이 없는 경우 토큰 단독 값으로 취급하고 userId는 나중에 API로 동적 조회
+          const accessToken = cleanPart.replace(/['"]/g, '');
+          if (accessToken) {
+            accounts.push({ userId: '', accessToken });
           }
         }
       }
@@ -101,7 +107,7 @@ const config = {
 
 /**
  * 특정 계정 설정을 반환하는 헬퍼 함수 (하위 호환성 지원)
- * @param {string} accountName - 조회할 계정명
+ * @param {string} accountIdentifier - 조회할 계정 식별자 (userId, name, username 등)
  * @returns {{ userId: string, accessToken: string }} 계정 설정 정보
  */
 function getAccountConfig(accountIdentifier) {
@@ -114,9 +120,11 @@ function getAccountConfig(accountIdentifier) {
   }
 
   const accounts = config.multiAccounts || [];
-  // userId 또는 name으로 대조하여 계정 조회
+  // userId, name, username 중 하나로 대조하여 계정 조회
   const account = accounts.find(
-    (a) => String(a.userId) === String(accountIdentifier) || a.name === accountIdentifier
+    (a) => String(a.userId) === String(accountIdentifier) || 
+           a.name === accountIdentifier || 
+           a.username === accountIdentifier
   );
 
   if (!account) {
@@ -127,6 +135,50 @@ function getAccountConfig(accountIdentifier) {
     userId: account.userId,
     accessToken: account.accessToken,
   };
+}
+
+/**
+ * 토큰을 기반으로 누락된 사용자 ID(userId)를 API를 통해 동적으로 확인합니다.
+ */
+async function resolveUserIds() {
+  // 1. 기본 계정의 userId가 없을 경우
+  if (config.accessToken && !config.userId) {
+    try {
+      const url = `${config.baseUrl}/me?fields=id,username&access_token=${config.accessToken}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data && data.id) {
+        config.userId = data.id;
+        console.log(`ℹ️  기본 계정의 사용자 ID를 자동 확인했습니다: @${data.username} (${data.id})`);
+      } else if (data && data.error) {
+        console.warn(`⚠️  기본 계정 사용자 ID 조회 실패: ${data.error.message}`);
+      }
+    } catch (err) {
+      console.warn('⚠️  기본 계정의 사용자 ID를 확인하지 못했습니다:', err.message);
+    }
+  }
+
+  // 2. 다중 계정 설정 중 userId가 없는 계정이 있을 경우
+  if (config.multiAccounts && config.multiAccounts.length > 0) {
+    for (const account of config.multiAccounts) {
+      if (account.accessToken && !account.userId) {
+        try {
+          const url = `${config.baseUrl}/me?fields=id,username&access_token=${account.accessToken}`;
+          const res = await fetch(url);
+          const data = await res.json();
+          if (data && data.id) {
+            account.userId = data.id;
+            account.username = data.username; // 사용자명도 저장하여 --account <username> 지원 가능케 함
+            console.log(`ℹ️  다중 계정의 사용자 ID를 자동 확인했습니다: @${data.username} (${data.id})`);
+          } else if (data && data.error) {
+            console.warn(`⚠️  다중 계정 사용자 ID 조회 실패: ${data.error.message}`);
+          }
+        } catch (err) {
+          console.warn('⚠️  다중 계정의 사용자 ID를 확인하지 못했습니다:', err.message);
+        }
+      }
+    }
+  }
 }
 
 /**
@@ -154,5 +206,5 @@ function validateConfig() {
   return warnings.length === 0 || hasMultiAccounts;
 }
 
-module.exports = { config, validateConfig, getAccountConfig };
+module.exports = { config, validateConfig, getAccountConfig, resolveUserIds };
 

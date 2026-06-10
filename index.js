@@ -12,7 +12,7 @@
  *   node index.js reply ID "텍스트" → 빠른 답글 작성
  */
 
-const { config, validateConfig, getAccountConfig } = require('./src/config');
+const { config, validateConfig, getAccountConfig, resolveUserIds } = require('./src/config');
 const {
   createTextPost,
   createImagePost,
@@ -187,6 +187,9 @@ async function main() {
   const args = process.argv.slice(2);
   const accountName = getAccountFromArgs(args);
   let accountConfig = null;
+
+  // 누락된 사용자 ID 자동 해결
+  await resolveUserIds();
 
   // 설정 검사
   validateConfig();

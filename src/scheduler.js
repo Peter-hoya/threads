@@ -36,7 +36,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { config, validateConfig, getAccountConfig } = require('./config');
+const { config, validateConfig, getAccountConfig, resolveUserIds } = require('./config');
 const { createTextPost, createImagePost, createVideoPost } = require('./threads-api');
 
 // 파일 경로 상수
@@ -364,6 +364,7 @@ async function processQueue() {
  * 스케줄러 시작 (주기적 체크)
  */
 async function startScheduler() {
+  await resolveUserIds();
   const isConfigValid = validateConfig();
   if (!isConfigValid) {
     console.error('❌ .env 설정을 먼저 완료하세요.');
@@ -425,6 +426,7 @@ async function runCheck() {
  * 1회만 체크 후 종료
  */
 async function runOnce() {
+  await resolveUserIds();
   const isConfigValid = validateConfig();
   if (!isConfigValid) {
     console.error('❌ .env 설정을 먼저 완료하세요.');
