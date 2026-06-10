@@ -69,9 +69,9 @@ const config = {
  * @param {string} accountName - 조회할 계정명
  * @returns {{ userId: string, accessToken: string }} 계정 설정 정보
  */
-function getAccountConfig(accountName) {
-  if (!accountName) {
-    // 계정명이 없으면 기본 계정 설정을 반환
+function getAccountConfig(accountIdentifier) {
+  if (!accountIdentifier) {
+    // 계정 식별자가 없으면 기본 계정 설정을 반환
     return {
       userId: config.userId,
       accessToken: config.accessToken,
@@ -79,9 +79,13 @@ function getAccountConfig(accountName) {
   }
 
   const accounts = config.multiAccounts || [];
-  const account = accounts.find((a) => a.name === accountName);
+  // userId 또는 name으로 대조하여 계정 조회
+  const account = accounts.find(
+    (a) => String(a.userId) === String(accountIdentifier) || a.name === accountIdentifier
+  );
+
   if (!account) {
-    throw new Error(`계정 설정 "${accountName}"을 찾을 수 없습니다. THREADS_MULTI_ACCOUNTS 설정을 확인하세요.`);
+    throw new Error(`계정 설정 "${accountIdentifier}"을 찾을 수 없습니다. THREADS_MULTI_ACCOUNTS 설정을 확인하세요.`);
   }
 
   return {
