@@ -163,6 +163,15 @@
       "status": "ready",
       "created_from_threads": "threads_019",
       "created_at": "2026-06-10T14:23:18.131Z"
+    },
+    {
+      "id": "x_020",
+      "account": null,
+      "category": "workflow",
+      "content": "마감일은 정했는데\n자료가 안 오면 답이 없다.\n내가 늦은 것도 아닌데\n일정은 같이 밀린다.\n그래도 고객은\n완성일만 기억하더라.\n자료 마감일을\n따로 잡아야 할 것 같다.\n다들 자료 지연\n어떻게 처리해?\n\n#업무효율 #생산성 #프리랜서",
+      "status": "ready",
+      "created_from_threads": "threads_020",
+      "created_at": "2026-06-11T00:16:27.769Z"
     }
   ]
 }
