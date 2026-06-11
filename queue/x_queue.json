@@ -185,6 +185,15 @@
       "status": "ready",
       "created_from_threads": "threads_021",
       "created_at": "2026-06-11T08:47:54.221Z"
+    },
+    {
+      "id": "x_022",
+      "account": null,
+      "category": "consulting",
+      "content": "상담 중엔 고객이\n다 급하다고 말해.\n근데 자료 요청하면\n갑자기 조용해진다.\n진짜 급한 건지\n그냥 생각만 한 건지 보인다.\n자료 제출 기준을\n봐야 할 것 같다.\n다들 급한 고객\n어떻게 구분해?\n\n#고객상담 #프리랜서 #비즈니스",
+      "status": "ready",
+      "created_from_threads": "threads_022",
+      "created_at": "2026-06-11T14:37:30.177Z"
     }
   ]
 }
