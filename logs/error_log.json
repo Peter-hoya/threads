@@ -1,3 +1,11 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": "threads_025",
+      "content_preview": "견적 항목을\n너무 자세히 쓰면 복잡해.\n\n대충 쓰면\n나중에 말이 달라진다.\n\n항목 하나가\n",
+      "error_message": "Threads API 오류 [2]: An unexpected error has occurred. Please retry your request later.",
+      "failed_at": "2026-06-12T14:10:27.710Z",
+      "scheduled_at": null
+    }
+  ]
 }
