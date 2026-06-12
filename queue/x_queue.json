@@ -196,6 +196,15 @@
       "status": "ready",
       "created_from_threads": "threads_022",
       "created_at": "2026-06-11T14:37:30.177Z"
+    },
+    {
+      "id": "x_023",
+      "account": null,
+      "category": "sales",
+      "content": "소개로 들어온 고객은\n편할 줄 알았어.\n근데 소개라서\n더 조심스러운 부분도 있더라.\n거절도 어렵고\n가격 말하기도 애매하다.\n소개 고객일수록\n기준이 필요하다고 느꼈다.\n다들 소개건\n더 편해?\n\n#영업 #마케팅 #수주",
+      "status": "ready",
+      "created_from_threads": "threads_023",
+      "created_at": "2026-06-12T00:20:07.614Z"
     }
   ]
 }
