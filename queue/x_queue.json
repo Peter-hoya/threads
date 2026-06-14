@@ -264,6 +264,15 @@
       "status": "ready",
       "created_from_threads": "threads_029",
       "created_at": "2026-06-14T00:08:32.597Z"
+    },
+    {
+      "id": "x_030",
+      "account": null,
+      "category": "consulting",
+      "content": "무료 상담이\n항상 무료로 끝나진 않아.\n시간은 쓰는데\n계약은 안 되는 경우가 많다.\n그래도 안 할 수는 없고\n기준이 어렵더라.\n상담 범위를\n정해둬야 할 것 같다.\n다들 무료 상담\n어디까지 해?\n\n#고객상담 #프리랜서 #비즈니스",
+      "status": "ready",
+      "created_from_threads": "threads_030",
+      "created_at": "2026-06-14T08:17:06.476Z"
     }
   ]
 }
