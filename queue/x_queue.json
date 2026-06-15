@@ -308,6 +308,15 @@
       "status": "ready",
       "created_from_threads": "threads_033",
       "created_at": "2026-06-15T10:24:33.190Z"
+    },
+    {
+      "id": "x_034",
+      "account": null,
+      "category": "consulting",
+      "content": "상담하다 보면\n고객 말보다 표정이 중요해.\n온라인이면 그걸\n읽기가 더 어렵다.\n그래서 텍스트만 보면\n온도를 놓칠 때가 있다.\n고객 반응 기록이\n필요하다고 느꼈다.\n다들 고객 온도\n어떻게 봐?\n\n#고객상담 #프리랜서 #비즈니스",
+      "status": "ready",
+      "created_from_threads": "threads_034",
+      "created_at": "2026-06-15T16:18:36.368Z"
     }
   ]
 }
