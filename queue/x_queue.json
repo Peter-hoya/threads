@@ -286,6 +286,15 @@
       "status": "ready",
       "created_from_threads": "threads_031",
       "created_at": "2026-06-14T13:00:20.881Z"
+    },
+    {
+      "id": "x_032",
+      "account": null,
+      "category": "workflow",
+      "content": "혼자 일하면\n보고할 사람이 없어서 편하다.\n근데 그래서\n내가 어디까지 했는지 모를 때가 있다.\n진행률이 안 보이면\n불안만 커진다.\n나한테 보고하는 방식이\n필요한 것 같다.\n다들 진행률\n어떻게 확인해?\n\n#업무효율 #생산성 #프리랜서",
+      "status": "ready",
+      "created_from_threads": "threads_032",
+      "created_at": "2026-06-15T00:10:03.645Z"
     }
   ]
 }
