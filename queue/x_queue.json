@@ -235,9 +235,11 @@
       "account": null,
       "category": "workflow",
       "content": "할 일 목록을 적어도\n금방 지저분해진다.\n고객별, 페이지별, 수정별로\n전부 섞인다.\n그러다 보면\n중요한 일이 묻힌다.\n프로젝트별로\n나눠야 할 것 같다.\n다들 할 일 관리\n어디에 해?\n\n#업무효율 #생산성 #프리랜서",
-      "status": "ready",
+      "status": "posted",
       "created_from_threads": "threads_024",
-      "created_at": "2026-06-12T08:26:36.996Z"
+      "created_at": "2026-06-12T08:26:36.996Z",
+      "posted_at": "2026-06-16T04:30:48.172Z",
+      "x_status_url": "https://x.com/design_jimi/status/2066740170981020089"
     },
     {
       "id": "x_026",
