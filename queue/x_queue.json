@@ -319,6 +319,15 @@
       "status": "ready",
       "created_from_threads": "threads_034",
       "created_at": "2026-06-15T16:18:36.368Z"
+    },
+    {
+      "id": "x_035",
+      "account": null,
+      "category": "sales",
+      "content": "블로그에 글은 쓰는데\n문의로 이어지는지 모르겠다.\n조회수는 있는데\n상담은 조용한 날이 많다.\n그럼 글을 잘못 쓴 건지\n타깃이 다른 건지 헷갈린다.\n반응을 보는 기준이\n필요하다고 느꼈다.\n다들 콘텐츠 성과\n뭘로 봐?\n\n#영업 #마케팅 #수주",
+      "status": "ready",
+      "created_from_threads": "threads_035",
+      "created_at": "2026-06-16T01:41:59.958Z"
     }
   ]
 }
