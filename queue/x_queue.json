@@ -374,6 +374,15 @@
       "status": "ready",
       "created_from_threads": "threads_039",
       "created_at": "2026-06-17T09:03:19.316Z"
+    },
+    {
+      "id": "x_040",
+      "account": null,
+      "category": "workflow",
+      "content": "프로젝트가 두 개만 돼도\n머리가 복잡해진다.\n누구는 자료 대기\n누구는 수정 대기.\n상태를 기억하는 데\n에너지가 많이 든다.\n고객별 상태판이\n필요하다고 느꼈다.\n나만 프로젝트 섞이나?\n\n#업무효율 #생산성 #프리랜서",
+      "status": "ready",
+      "created_from_threads": "threads_040",
+      "created_at": "2026-06-17T14:26:51.984Z"
     }
   ]
 }
