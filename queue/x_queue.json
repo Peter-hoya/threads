@@ -363,6 +363,15 @@
       "status": "ready",
       "created_from_threads": "threads_038",
       "created_at": "2026-06-17T00:17:21.792Z"
+    },
+    {
+      "id": "x_039",
+      "account": null,
+      "category": "sales",
+      "content": "웹디자인 영업은\n예쁘다만으로 안 되더라.\n고객은 결국\n문의가 늘지 궁금해한다.\n디자인보다\n사업 문제를 말해야 반응한다.\n고객 언어로\n바꿔야 할 것 같다.\n다들 영업할 때\n뭘 강조해?\n\n#영업 #마케팅 #수주",
+      "status": "ready",
+      "created_from_threads": "threads_039",
+      "created_at": "2026-06-17T09:03:19.316Z"
     }
   ]
 }
