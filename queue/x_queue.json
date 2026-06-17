@@ -268,9 +268,11 @@
       "account": null,
       "category": "workflow",
       "content": "작업 시작 전보다\n작업 중간이 더 위험하다.\n처음엔 의욕이 있는데\n중간엔 판단이 흐려진다.\n수정과 연락이 섞이면\n전체 방향을 잃는다.\n중간 점검 기준이\n필요하다고 느꼈다.\n다들 중간 리뷰\n하고 있어?\n\n#업무효율 #생산성 #프리랜서",
-      "status": "ready",
+      "status": "posted",
       "created_from_threads": "threads_028",
-      "created_at": "2026-06-13T12:26:13.315Z"
+      "created_at": "2026-06-13T12:26:13.315Z",
+      "posted_at": "2026-06-17T04:30:42.302Z",
+      "x_status_url": "https://x.com/design_jimi/status/2067102547094151424"
     },
     {
       "id": "x_029",
