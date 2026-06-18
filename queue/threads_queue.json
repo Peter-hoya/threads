@@ -262,343 +262,343 @@
       "id": "threads_044",
       "category": "workflow",
       "content": "작업 파일은 많은데\n최종본이 뭔지 헷갈릴 때가 있어.\n\n최종, 진짜최종, 수정최종.\n\n웃긴데 실제로\n이런 일이 생기더라.\n\n버전 이름 규칙이\n필요한 것 같다.\n\n다들 최종본\n어떻게 관리해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_045",
       "category": "estimate",
       "content": "처음 견적은\n대부분 대략으로 시작해.\n\n문제는 그 대략이\n나중에 확정처럼 굳는 거야.\n\n고객도 나도\n기준을 놓치게 된다.\n\n가견적과 확정견적을\n나눠야 할 것 같다.\n\n다들 구분해서 보내?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_046",
       "category": "consulting",
       "content": "상담이 길어질수록\n계약이 가까운 건 아니더라.\n\n오히려 결정 못 하는 고객이\n말이 더 많을 때가 있다.\n\n시간을 많이 썼다고\n좋은 신호는 아니었다.\n\n상담 시간 기준이\n필요하다고 느꼈다.\n\n다들 몇 분 넘으면\n정리해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_047",
       "category": "sales",
       "content": "SNS에 작업물을 올리면\n반응은 있는데 문의는 적다.\n\n좋아요와 매출은\n다른 문제더라.\n\n처음엔 그 차이가\n제일 헷갈렸다.\n\n문의로 이어지는 글이\n따로 있는 것 같다.\n\n다들 SNS로\n문의 받아봤어?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_048",
       "category": "workflow",
       "content": "외주를 맡기면\n편해질 줄 알았어.\n\n근데 설명을 못 하면\n오히려 일이 더 늘어난다.\n\n내 머릿속 기준을\n남에게 넘기는 게 어렵다.\n\n작업 지시서가\n필요하다고 느꼈다.\n\n다들 외주 줄 때\n문서 써?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_049",
       "category": "estimate",
       "content": "견적 낮춰달라는 말이\n제일 애매해.\n\n깎아주면 편한데\n내 기준도 같이 깎인다.\n\n한 번 낮춘 가격은\n다시 올리기 어렵더라.\n\n금액 조정보다\n범위 조정이 맞는 것 같다.\n\n다들 할인 대신\n뭘 빼?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_050",
       "category": "consulting",
       "content": "상담 후 정리문을 보내면\n일이 훨씬 편해진다.\n\n말한 내용이\n문장으로 남기 때문이다.\n\n근데 매번 쓰는 게\n은근히 귀찮다.\n\n상담 요약 틀이\n필요한 것 같다.\n\n다들 상담 후\n요약 보내고 있어?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_051",
       "category": "sales",
       "content": "영업할 때 제일 어려운 건\n내 장점을 말하는 거야.\n\n남 일은 잘 보이는데\n내 건 괜히 어색하다.\n\n그래서 결국\n평범한 말만 쓰게 된다.\n\n고객 입장에서\n다시 써야 할 것 같다.\n\n다들 자기소개\n잘 써져?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_052",
       "category": "workflow",
       "content": "작업 시간이 부족한 게 아니라\n전환 시간이 많이 든다.\n\n상담하다가 디자인하고\n다시 견적 쓰고.\n\n일을 바꾸는 순간마다\n집중이 깨진다.\n\n시간대를 나눠야 할 것 같다.\n\n다들 업무를\n몰아서 해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_053",
       "category": "estimate",
       "content": "견적서가 많아질수록\n관리표가 필요해져.\n\n처음엔 기억으로 됐는데\n건수가 쌓이면 헷갈린다.\n\n누가 승인했고\n누가 보류인지 흐려진다.\n\n상태값 하나만 있어도\n훨씬 나을 것 같다.\n\n다들 견적 상태\n어디에 적어?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_054",
       "category": "consulting",
       "content": "문의는 왔는데\n목적을 모르는 경우가 많아.\n\n그냥 홈페이지가 필요하대.\n\n근데 왜 필요한지 없으면\n제작 방향도 흐려진다.\n\n목적 질문을\n제일 먼저 해야 할 것 같다.\n\n다들 목적부터 물어?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_055",
       "category": "sales",
       "content": "수주가 끊기면\n실력보다 불안이 먼저 온다.\n\n이번 달 괜찮을까\n다음 달은 어떡하지.\n\n그 불안 때문에\n판단도 흐려진다.\n\n문의 채널을\n여러 개 둬야 할 것 같다.\n\n다들 유입 채널\n몇 개 있어?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_056",
       "category": "workflow",
       "content": "급한 수정은\n항상 애매한 시간에 온다.\n\n잠깐만 해달라는 말이\n하루 흐름을 바꿔버린다.\n\n작은 수정도\n일정 안에 들어와야 한다.\n\n긴급 기준을\n정해야 할 것 같다.\n\n다들 당일 수정\n받아줘?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_057",
       "category": "estimate",
       "content": "견적 보낼 때마다\n파일명을 고민한다.\n\n고객명, 날짜, 버전까지\n붙이다 보면 지저분해진다.\n\n그래도 안 붙이면\n나중에 못 찾는다.\n\n견적서 버전 관리가\n생각보다 중요하더라.\n\n나만 파일명에\n집착하는 건가?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_058",
       "category": "consulting",
       "content": "상담 중에 제일 흔한 말이\n깔끔하게 해주세요더라.\n\n근데 깔끔함의 기준은\n사람마다 너무 다르다.\n\n결국 예시 없이는\n서로 다른 그림을 본다.\n\n표현을 이미지로\n확인해야 할 것 같다.\n\n다들 이런 말\n어떻게 받아?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_059",
       "category": "sales",
       "content": "고객은 전문가를 원하지만\n처음엔 가격으로 비교한다.\n\n이게 제일 답답하더라.\n\n차이를 보여주기 전에는\n숫자만 보이는 것 같다.\n\n상담 전에 신뢰를\n쌓아야 할 것 같다.\n\n다들 신뢰 자료\n뭐 보여줘?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_060",
       "category": "workflow",
       "content": "프로젝트가 끝나도\n일이 완전히 끝난 느낌이 안 들어.\n\n잔수정, 문의, 계정 전달까지\n계속 따라온다.\n\n마무리 체크가 없으면\n끝이 흐려진다.\n\n종료 체크리스트가\n필요한 것 같다.\n\n다들 납품 후\n뭐까지 해줘?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_061",
       "category": "estimate",
       "content": "작은 홈페이지라고\n작은 일이 아니더라.\n\n문의는 간단한데\n정리할 건 똑같이 많다.\n\n그래서 금액만 보고\n판단하면 꼭 힘들어진다.\n\n작은 건도 기준이\n필요하다고 느꼈다.\n\n다들 소액건\n어디까지 받아?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_062",
       "category": "consulting",
       "content": "고객 요구사항은\n처음보다 중간에 더 많이 나온다.\n\n처음엔 몰랐던 게\n보다 보면 생각나는 것 같다.\n\n이걸 무조건 받아주면\n일정이 밀린다.\n\n요구 추가 기준이\n필요하다고 느꼈다.\n\n다들 중간 요청\n어디까지 받아?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_063",
       "category": "sales",
       "content": "마케팅 대행사랑 협업하면\n좋을 줄 알았어.\n\n근데 역할이 흐려지면\n책임도 같이 흐려진다.\n\n누가 어디까지 하는지\n정하지 않으면 꼬인다.\n\n협업 범위를\n먼저 적어야 할 것 같다.\n\n다들 외주 협업\n편하게 해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_064",
       "category": "workflow",
       "content": "고객 자료를 받는 일이\n생각보다 오래 걸린다.\n\n로고, 사진, 문구, 계정 정보까지\n하나씩 요청해야 한다.\n\n자료 요청만 잘해도\n일정이 줄 것 같다.\n\n자료 요청 양식이\n필요하다고 느꼈다.\n\n다들 자료는\n한 번에 받아?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_065",
       "category": "estimate",
       "content": "견적서에 안 쓴 건\n나중에 꼭 말이 나온다.\n\n그때는 기억보다\n문서가 더 세더라.\n\n좋은 관계도\n기준 없으면 흔들린다.\n\n처음부터 문서로\n남기는 게 맞는 것 같다.\n\n나만 말로 했다가\n후회한 적 있어?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_066",
       "category": "consulting",
       "content": "상담 내용을\n머릿속에만 두면 위험해.\n\n나중에 바쁠 때\n비슷한 고객이 섞인다.\n\n기억력 문제가 아니라\n시스템 문제 같더라.\n\n상담 기록 방식이\n필요하다고 느꼈다.\n\n나만 고객 내용\n가끔 섞이나?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_067",
       "category": "sales",
       "content": "초기 고객을 잡는 게\n제일 어렵다.\n\n후기는 없고\n사례도 부족하고.\n\n그래도 처음부터\n싼 가격만 답은 아니더라.\n\n작은 성공 사례를\n쌓아야 할 것 같다.\n\n다들 첫 고객\n어떻게 잡았어?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_068",
       "category": "workflow",
       "content": "작업할 때 제일 무서운 건\n놓친 게 있을까 봐야.\n\n고객은 모르지만\n나는 계속 신경 쓰인다.\n\n검수 기준이 없으면\n감으로만 보게 된다.\n\n오픈 전 체크리스트가\n필요한 것 같다.\n\n다들 런칭 전\n뭐 확인해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_069",
       "category": "estimate",
       "content": "견적 문의가 오면\n기쁜데 바로 긴장된다.\n\n이번엔 계약될까\n또 비교만 하다 끝날까.\n\n문의가 많아도\n마음은 편하지 않더라.\n\n문의 품질을 봐야 한다고\n느꼈다.\n\n다들 문의 들어오면\n바로 감이 와?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_070",
       "category": "consulting",
       "content": "처음 상담에서\n좋은 고객인지 감이 올 때가 있어.\n\n자료가 정리돼 있고\n목적이 분명한 사람.\n\n반대로 흐린 고객은\n끝까지 흐리더라.\n\n초기 신호를\n더 봐야 할 것 같다.\n\n다들 고객 감별\n어느 정도 맞아?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_071",
       "category": "sales",
       "content": "영업 메시지를 보내면\n항상 부담스럽다.\n\n필요해 보이는데\n괜히 영업처럼 보일까 봐.\n\n그래서 좋은 기회도\n놓칠 때가 있다.\n\n문제 제안형으로\n말해야 할 것 같다.\n\n다들 먼저 연락\n잘 해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_072",
       "category": "workflow",
       "content": "혼자 하다 보면\n우선순위가 계속 바뀐다.\n\n급한 연락이 오면\n중요한 일이 뒤로 밀린다.\n\n결국 하루가 끝나면\n뭘 했는지 애매하다.\n\n하루 기준을\n먼저 정해야 할 것 같다.\n\n다들 아침에\n일정 잡아?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_073",
       "category": "estimate",
       "content": "견적을 잘 쓰려면\n제작보다 질문이 먼저더라.\n\n고객이 뭘 원하는지\n정리 안 되면 답이 없다.\n\n결국 좋은 견적은\n좋은 질문에서 나오는 것 같다.\n\n상담 질문지를\n고정해볼까 생각 중이다.\n\n다들 질문지\n가지고 있어?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_074",
       "category": "consulting",
       "content": "상담이 끝났는데\n해야 할 일이 안 보일 때가 있어.\n\n분명 오래 얘기했는데\n결정된 게 없다.\n\n그런 상담은\n나중에 꼭 다시 돌아온다.\n\n마지막에 다음 행동을\n정해야 할 것 같다.\n\n다들 상담 끝날 때\n뭘 정해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_075",
       "category": "sales",
       "content": "수주가 잘 되는 달엔\n기분이 좋은데 불안도 생긴다.\n\n이게 다음 달에도\n이어질지 모르기 때문이다.\n\n프리랜서는 매출보다\n흐름이 더 무섭더라.\n\n파이프라인 관리가\n필요하다고 느꼈다.\n\n다들 다음 달 일감\n보여?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_076",
       "category": "workflow",
       "content": "작업 관리는\n툴보다 습관 문제 같아.\n\n좋은 툴을 써도\n안 적으면 아무 의미 없다.\n\n근데 적기 쉽게 만들면\n확실히 달라진다.\n\n최소 입력 구조가\n필요한 것 같다.\n\n다들 관리툴\n꾸준히 써?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_077",
       "category": "estimate",
       "content": "견적서 하나 보내는데\n생각보다 감정이 들어간다.\n\n너무 비싸 보일까\n너무 싸게 보일까.\n\n숫자보다\n내 기준을 보여주는 일 같더라.\n\n견적 기준을\n더 단단히 잡아야겠다.\n\n다들 가격 정할 때\n안 흔들려?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_078",
       "category": "consulting",
       "content": "고객은 빠른 답을 원하지만\n나는 정확한 답이 필요해.\n\n이 차이가 상담을\n은근히 어렵게 만든다.\n\n바로 답하면 편하지만\n나중에 바뀔 수 있다.\n\n즉답보다 확인 후 답변이\n맞는 것 같다.\n\n다들 바로 대답해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_079",
       "category": "sales",
       "content": "고객이 나를 선택한 이유를\n물어본 적 있어?\n\n생각보다 답이\n내 예상과 다를 때가 많다.\n\n그걸 알아야\n영업 문구도 바뀐다.\n\n선택 이유를\n기록해야 할 것 같다.\n\n다들 고객한테\n물어본 적 있어?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_080",
       "category": "workflow",
       "content": "웹 제작은\n디자인만 하는 일이 아니더라.\n\n일정, 자료, 고객 감정까지\n같이 관리해야 한다.\n\n그래서 실력보다\n운영이 더 힘들 때가 있다.\n\n운영 흐름을\n정리해야 할 것 같다.\n\n나만 제작보다\n운영이 힘든가?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_081",
       "category": "estimate",
       "content": "견적을 보낼 때마다\n조금씩 긴장된다.\n\n너무 비싸 보일까\n너무 싸게 보일까.\n\n결국 금액보다\n기준이 약해서 흔들리더라.\n\n견적 기준표를\n먼저 만들어야 할 것 같다.\n\n다들 기준가\n정해두고 있어?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_082",
       "category": "consulting",
       "content": "상담할 때 고객 말이\n전부 요구사항은 아니더라.\n\n그냥 생각나는 걸\n말하는 경우도 많다.\n\n그걸 다 받아 적으면\n방향이 흔들린다.\n\n요구와 의견을\n구분해야 할 것 같다.\n\n다들 상담 중에\n어떻게 나눠?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_083",
       "category": "sales",
       "content": "수주는 운도 있지만\n준비도 있더라.\n\n고객이 찾아왔을 때\n보여줄 게 없으면 놓친다.\n\n그때 급하게 정리하면\n티가 난다.\n\n평소에 사례를\n쌓아둬야 할 것 같다.\n\n다들 사례 정리\n꾸준히 해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_084",
       "category": "workflow",
       "content": "작업이 밀리는 이유가\n항상 작업 때문은 아니더라.\n\n답장, 자료 요청, 확인까지\n중간 일이 너무 많다.\n\n이런 일들이\n일정을 갉아먹는다.\n\n보조 업무를\n따로 관리해야 할 것 같다.\n\n다들 잡무 시간\n계산해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_085",
       "category": "estimate",
       "content": "고객은 견적만 보지만\n나는 뒤의 작업을 본다.\n\n자료 정리, 수정, 소통까지\n전부 시간이 든다.\n\n그런데 견적서엔\n그게 잘 안 보인다.\n\n보이지 않는 일을\n설명해야 할 것 같다.\n\n다들 숨은 작업\n어떻게 말해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_086",
       "category": "consulting",
       "content": "고객 상담은\n질문 싸움 같아.\n\n질문을 잘못하면\n답도 흐려진다.\n\n그러면 견적도\n작업도 같이 애매해진다.\n\n첫 상담 질문을\n고정해봐야 할 것 같다.\n\n다들 질문 순서\n정해놨어?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_087",
       "category": "sales",
       "content": "영업이 싫은 이유는\n팔아야 해서가 아니야.\n\n내가 나를 설명해야 해서\n어색한 거다.\n\n그래서 자꾸\n무난한 말만 쓰게 된다.\n\n고객 문제부터 말하면\n덜 어색할 것 같다.\n\n다들 자기 영업\n편하게 해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_088",
       "category": "workflow",
       "content": "프로젝트가 많아지면\n머릿속 칸이 부족해진다.\n\n누구는 디자인 중\n누구는 자료 대기.\n\n상태를 기억하는 것만으로도\n피로가 쌓인다.\n\n상태판이\n진짜 필요하다고 느꼈다.\n\n다들 상태 관리\n어떻게 해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_089",
       "category": "estimate",
       "content": "견적서가 늦어지면\n계약도 멀어지는 느낌이야.\n\n근데 급하게 쓰면\n빠뜨리는 게 생긴다.\n\n속도와 정확도 사이가\n늘 애매하더라.\n\n견적 자동화보다\n견적 기준이 먼저인 것 같다.\n\n나만 이 부분\n계속 막히나?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_090",
       "category": "consulting",
       "content": "상담 후에\n고객이 조용해질 때가 있어.\n\n관심이 없는 건지\n고민 중인 건지 모르겠다.\n\n그 사이에 나는\n괜히 계속 신경 쓴다.\n\n후속 연락 기준이\n필요하다고 느꼈다.\n\n다들 언제 다시\n연락해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_091",
       "category": "sales",
       "content": "문의가 끊기면\n갑자기 모든 게 불안해진다.\n\n작업할 땐 몰랐는데\n끝나면 빈칸이 보인다.\n\n프리랜서는 일이 아니라\n흐름이 무서운 것 같다.\n\n유입 루틴을\n만들어야 할 것 같다.\n\n다들 매일 홍보\n하고 있어?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_092",
       "category": "workflow",
       "content": "수정 요청은\n내용보다 방식이 중요해.\n\n말로만 오면\n나중에 꼭 헷갈린다.\n\n캡처와 위치가 없으면\n찾는 시간이 더 든다.\n\n수정 요청 양식을\n정해야 할 것 같다.\n\n다들 수정은\n어떤 식으로 받아?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_093",
       "category": "estimate",
       "content": "견적 문의가 들어오면\n반가운데 피곤하기도 해.\n\n이번에도 비교만 하다\n끝날까 봐 그렇다.\n\n상담 전부터\n진짜 고객인지 보고 싶어진다.\n\n문의 단계에서\n필터가 필요할 것 같다.\n\n다들 진성 고객\n어떻게 알아봐?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_094",
       "category": "consulting",
       "content": "상담 내용이 많아도\n결정된 게 없으면 힘들다.\n\n오래 이야기했는데\n다음 행동이 없다.\n\n그럼 결국 다시\n처음부터 묻게 된다.\n\n상담 마지막에\n결정사항을 남겨야 할 것 같다.\n\n다들 상담 끝에\n정리해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_095",
       "category": "sales",
       "content": "수주를 늘리려면\n잘하는 걸 말해야 한다.\n\n근데 막상 쓰려면\n전부 뻔한 말처럼 보인다.\n\n전문성은 있는데\n문장으로 안 나온다.\n\n고객 사례로 말하는 게\n더 나을 것 같다.\n\n다들 강점 표현\n어떻게 해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_096",
       "category": "workflow",
       "content": "혼자 일하면\n일정 조율도 내 몫이다.\n\n고객은 한 명이지만\n나는 여러 명을 동시에 본다.\n\n이 차이를\n고객은 잘 모른다.\n\n진행 일정을\n보여줄 필요가 있는 것 같다.\n\n다들 일정표\n공유해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_097",
       "category": "estimate",
       "content": "견적서 하나에도\n내 시간이 들어간다.\n\n계약 안 돼도\n그 시간은 사라진다.\n\n그래서 무료 견적이\n가끔 무겁게 느껴진다.\n\n간단 견적과 상세 견적을\n나눠야 할 것 같다.\n\n다들 무료 견적\n어디까지 해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_098",
       "category": "consulting",
       "content": "상담에서 가장 어려운 건\n고객의 진짜 목적 찾기야.\n\n홈페이지가 필요하다는 말 뒤에\n다른 고민이 숨어 있다.\n\n그걸 못 찾으면\n예쁜 사이트로 끝난다.\n\n목적을 파고드는 질문이\n필요한 것 같다.\n\n다들 목적 질문\n어떻게 해?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_099",
       "category": "sales",
       "content": "가격 문의만 하는 고객을\n무조건 나쁘게 볼 순 없어.\n\n그 사람도 기준이\n없어서 묻는 걸 수 있다.\n\n문제는 내가\n기준을 못 보여줄 때다.\n\n가격보다 선택 기준을\n먼저 줘야 할 것 같다.\n\n다들 가격 질문\n어떻게 받아?",
-      "status": "ready"
+      "status": "paused"
     },
     {
       "id": "threads_100",
       "category": "workflow",
       "content": "작업을 잘 끝내도\n마무리가 흐리면 찝찝하다.\n\n계정 전달, 안내, 잔수정까지\n끝이 애매하다.\n\n완료 기준이 없으면\n계속 끌려간다.\n\n납품 기준을\n정해야 할 것 같다.\n\n다들 완료 기준\n명확해?",
-      "status": "ready"
+      "status": "paused"
     }
   ]
 }
