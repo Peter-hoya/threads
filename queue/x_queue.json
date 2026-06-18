@@ -301,9 +301,11 @@
       "account": null,
       "category": "sales",
       "content": "수주가 급하면\n안 맞는 고객도 잡게 된다.\n그때는 돈이 먼저 보이는데\n작업하면서 후회한다.\n결국 안 맞는 일은\n비용보다 피로가 크다.\n고객 선택 기준이\n필요한 것 같다.\n다들 급할 때도\n거절해?\n\n#영업 #마케팅 #수주",
-      "status": "ready",
+      "status": "posted",
       "created_from_threads": "threads_031",
-      "created_at": "2026-06-14T13:00:20.881Z"
+      "created_at": "2026-06-14T13:00:20.881Z",
+      "posted_at": "2026-06-18T04:30:43.382Z",
+      "x_status_url": "https://x.com/design_jimi/status/2067464938508177770"
     },
     {
       "id": "x_032",
