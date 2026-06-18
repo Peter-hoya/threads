@@ -407,6 +407,15 @@
       "status": "ready",
       "created_from_threads": "threads_042",
       "created_at": "2026-06-18T08:48:22.954Z"
+    },
+    {
+      "id": "x_043",
+      "account": null,
+      "category": "sales",
+      "content": "견적을 많이 넣는다고\n수주가 늘진 않더라.\n오히려 안 맞는 곳에\n시간만 쓰게 된다.\n양보다 맞는 고객이\n더 중요하다고 느꼈다.\n타깃을 좁히는 게\n필요한 것 같다.\n다들 업종을\n정해두고 있어?\n\n#영업 #마케팅 #수주",
+      "status": "ready",
+      "created_from_threads": "threads_043",
+      "created_at": "2026-06-18T14:11:18.842Z"
     }
   ]
 }
